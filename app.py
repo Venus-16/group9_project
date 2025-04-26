@@ -40,7 +40,12 @@ if st.button('Predict Loan Approval'):
     prediction = model.predict(input_data)
     result = approval_encoder.inverse_transform(prediction)[0]
 
-    st.success(f'Prediction Result: {result}')
+   if result == 'Approved':
+        st.success('✅ Congratulations! Loan Approved!')
+    else:
+        st.error('❌ Unfortunately, Loan Not Approved.')
+    
+    st.balloons()
 
 
 
