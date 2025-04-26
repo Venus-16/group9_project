@@ -15,8 +15,10 @@ status_encoder = pickle.load(open('employment_encoder.pkl', 'rb'))
 approval_encoder = pickle.load(open('approval_encoder.pkl', 'rb'))
 
 # Page title
-st.title('Loan Approval Prediction')
-st.write('Please enter your information to predict your loan approval status.')
+st.set_page_config(page_title="Loan Approval Predictor", page_icon="🏦")
+st.title("🏦 Loan Approval Prediction App")
+st.header("Project 2 - Group 9")
+st.subheader("Enter Customer Details:")
 
 # Input form
 income = st.number_input('Annual Income (USD)', min_value=0)
