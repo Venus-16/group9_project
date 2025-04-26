@@ -20,22 +20,11 @@ st.title("🏦 Loan Approval Prediction App")
 st.header("Project 2 - Group 9")
 st.subheader("Enter Customer Details:")
 
-# Input fields in two columns
-col1, col2 = st.columns(2)
-
-with col1:
-    income = st.number_input('Annual Income ($)', min_value=0, value=50000)
-
-with col2:
-    credit_score = st.slider('Credit Score', 300, 850, 700)
-
-with col1:
-    loan_amount = st.number_input('Loan Amount ($)', min_value=0, value=10000)
-
-with col2:
-    dti_ratio = st.slider('Debt-to-Income Ratio (%)', 0.0, 100.0, 30.0)
-
-# Dynamically use the classes from the loaded encoder
+# Input form
+income = st.number_input('Annual Income (USD)', min_value=0)
+credit_score = st.number_input('Credit Score', min_value=0, max_value=850)
+loan_amount = st.number_input('Loan Amount (USD)', min_value=0)
+dti_ratio = st.number_input('Debt-to-Income Ratio (%)', min_value=0.0, max_value=100.0)
 employment_status = st.selectbox('Employment Status', status_encoder.classes_)
 
 # Predict button
