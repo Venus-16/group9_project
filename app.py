@@ -48,12 +48,12 @@ if st.button('Predict Loan Approval'):
     # Display result with different color
     if result == 'Approved':
         st.markdown(
-            "<h2 style='text-align: center; color: green;'>✅ Loan Approved!</h2>",
+            "<h4 style='text-align: center; color: green;'>✅ Loan Approved!</h4>",
             unsafe_allow_html=True
         )
     else:
         st.markdown(
-            "<h2 style='text-align: center; color: red;'>❌ Loan Not Approved</h2>",
+            "<h4 style='text-align: center; color: red;'>❌ Loan Not Approved</h4>",
             unsafe_allow_html=True
         )
 
