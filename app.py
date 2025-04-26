@@ -8,6 +8,7 @@ Created on Sat Apr 26 21:50:21 2025
 import streamlit as st
 import pandas as pd
 import pickle
+import time
 
 # Load model and encoders
 model = pickle.load(open('loan_approval_model.pkl', 'rb'))
@@ -28,19 +29,24 @@ dti_ratio = st.number_input('Debt-to-Income Ratio (%)', min_value=0.0, max_value
 employment_status = st.selectbox('Employment Status', status_encoder.classes_)
 
 # Predict button
+# Predict button
 if st.button('Predict Loan Approval'):
-    input_data = pd.DataFrame({
-        'Income': [income],
-        'Credit_Score': [credit_score],
-        'Loan_Amount': [loan_amount],
-        'DTI_Ratio': [dti_ratio],
-        'Employment_Status': [status_encoder.transform([employment_status])[0]]
-    })
+    with st.spinner('🔎 Analyzing customer profile...'):
+        time.sleep(2)
 
-    prediction = model.predict(input_data)
-    result = approval_encoder.inverse_transform(prediction)[0]
+        input_data = pd.DataFrame({
+            'Income': [income],
+            'Credit_Score': [credit_score],
+            'Loan_Amount': [loan_amount],
+            'DTI_Ratio': [dti_ratio],
+            'Employment_Status': [status_encoder.transform([employment_status])[0]]
+        })
 
-  if result == 'Approved':
+        prediction = model.predict(input_data)
+        result = approval_encoder.inverse_transform(prediction)[0]
+
+    # Display result with different color
+    if result == 'Approved':
         st.markdown(
             "<h2 style='text-align: center; color: green;'>✅ Loan Approved!</h2>",
             unsafe_allow_html=True
